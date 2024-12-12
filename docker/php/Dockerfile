@@ -1,9 +1,6 @@
 FROM php:8.3-fpm
 
-RUN echo "nameserver 1.1.1.1" > /etc/resolv.conf && \
-    echo "nameserver 8.8.8.8" >> /etc/resolv.conf && \
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-  apt-get update \
+RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev \
   && docker-php-ext-install zip pdo_mysql
 
