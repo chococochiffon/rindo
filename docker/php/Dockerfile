@@ -1,6 +1,8 @@
 FROM php:8.3-fpm
 
-RUN apt-get update \
+RUN echo "nameserver 1.1.1.1" > /etc/resolv.conf \
+    && echo "nameserver 8.8.8.8" >> /etc/resolv.conf \
+  && apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev \
   && docker-php-ext-install zip pdo_mysql
 
