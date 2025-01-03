@@ -28,7 +28,8 @@ class ShopSeeder extends Seeder
         ];
         Shop::factory()->create([
             'name' => '竜胆ーRINDOUー',
-            'detail' => '今宵素敵な夜を貴方と',
+            'title' => '今宵素敵な夜を貴方と',
+            'detail' => '当店の名前には\n悲しむ貴方に寄り添う\nそんな言葉が込められています\n悲しいときも貴方に寄り添う\n癒しの場所を\nどうぞ心行くまでお楽しみください',
             'logo' => null,
             'favicon' => null,
             'is_sunday_start' => true,

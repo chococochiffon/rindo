@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\StaffFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,5 +49,10 @@ class Staff extends Authenticatable
     public function role(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'staff_roles');
+    }
+
+    public function shift(): HasMany
+    {
+        return $this->hasMany(Shift::class);
     }
 }

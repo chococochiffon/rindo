@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('detail');
+            $table->string('name',64);
+            $table->string('title',128)->nullable();
+            $table->text('detail')->nullable();
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->boolean('is_sunday_start')->default(true);

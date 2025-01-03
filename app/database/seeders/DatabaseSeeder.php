@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StaffRoleSeeder::class,
             ShopSeeder::class,
+            ShiftSeeder::class,
         ]);
     }
 }
