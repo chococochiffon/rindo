@@ -22,7 +22,13 @@ class Staff extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nickname',
+        'x_id',
         'email',
+        'race',
+        'sex',
+        'self_introduction',
+        'x_url',
         'password',
     ];
 
@@ -51,8 +57,18 @@ class Staff extends Authenticatable
         return $this->belongsToMany(Role::class, 'staff_roles');
     }
 
+    public function reservation(): BelongsToMany
+    {
+        return $this->belongsToMany(Reservation::class, 'staff_reservations');
+    }
+
     public function shift(): HasMany
     {
         return $this->hasMany(Shift::class);
+    }
+
+    public function staffImage(): HasMany
+    {
+        return $this->hasMany(StaffImage::class);
     }
 }

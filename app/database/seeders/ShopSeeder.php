@@ -26,6 +26,9 @@ class ShopSeeder extends Seeder
             'end_time'=>'24:00',
             'last_order' => '23:30',
         ];
+        $notch = [
+            '30', '50'
+        ];
         Shop::factory()->create([
             'name' => '竜胆ーRINDOUー',
             'title' => '今宵素敵な夜を貴方と',
@@ -35,6 +38,7 @@ class ShopSeeder extends Seeder
             'is_sunday_start' => true,
             'business_days' => json_encode($businessDays),
             'business_hour' => json_encode($businessHour),
+            'notch' => json_encode($notch),
         ]);
     }
 }

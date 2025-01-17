@@ -20,11 +20,23 @@ class Shop extends Model
      */
     protected $fillable = [
         'name',
+        'title',
         'detail',
         'logo',
         'favicon',
+        'address1',
+        'address2',
+        'address3',
+        'nearest',
+        'is_sunday_start',
+        'business_hour_text',
+        'business_day_text',
+        'last_order_text',
+        'business_hour',
         'business_days',
-        'business_hour'
+        'business_hour',
+        'last_order',
+        'notch',
     ];
 
     /**

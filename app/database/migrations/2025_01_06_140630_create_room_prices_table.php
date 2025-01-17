@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shifts', function (Blueprint $table) {
+        Schema::create('room_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staff_id')->constrained('staff')->onDelete('cascade');
-            $table->date('work_day');
-            $table->integer('status')->default(0);
-            $table->string('start_time')->default('21:00:00');
-            $table->string('end_time')->default('24:00:00');
+            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
+            $table->integer('quantity')->default(0);
+            $table->string('time')->default('00:00');
+            $table->integer('price')->default(0);
+            $table->integer('discount')->default(0);
             $table->timestamps();
             $table->softDeletes()->nullable();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shifts');
+        Schema::dropIfExists('room_prices');
     }
 };

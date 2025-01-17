@@ -5,12 +5,10 @@ namespace App\Models;
 use Database\Factories\RoomFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Room extends Model
+class Menu extends Model
 {
     /** @use HasFactory<RoomFactory> */
     use HasFactory, Notifiable, SoftDeletes;
@@ -22,8 +20,11 @@ class Room extends Model
      */
     protected $fillable = [
         'name',
-        'address',
-        'explanation',
+        'image_path',
+        'quantity',
+        'price',
+        'discount',
+        'is_option_item',
     ];
 
     /**
@@ -39,19 +40,4 @@ class Room extends Model
      * @return array<string, string>
      */
     protected $casts = [];
-
-    public function roomImage(): HasMany
-    {
-        return $this->hasMany(RoomImage::class);
-    }
-
-    public function roomPrice(): HasMany
-    {
-        return $this->hasMany(RoomPrice::class);
-    }
-
-    public function reservation(): BelongsTo
-    {
-        return $this->belongsTo(Reservation::class);
-    }
 }

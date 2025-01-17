@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shifts', function (Blueprint $table) {
+        Schema::create('recruitments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staff_id')->constrained('staff')->onDelete('cascade');
-            $table->date('work_day');
+            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
+            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
             $table->integer('status')->default(0);
-            $table->string('start_time')->default('21:00:00');
-            $table->string('end_time')->default('24:00:00');
+            $table->text('detail')->nullable();
+            $table->text('belongings')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shifts');
+        Schema::dropIfExists('recruitments');
     }
 };

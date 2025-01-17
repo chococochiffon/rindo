@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->string('name');
-            $table->text('address')->nullable();
-            $table->text('explanation')->nullable();
+            $table->text('image_path')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->integer('price')->default(0);
+            $table->integer('discount')->default(0);
+            $table->boolean('is_option_item')->default(false);
             $table->timestamps();
             $table->softDeletes()->nullable();
         });
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('menus');
     }
 };

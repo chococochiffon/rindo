@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Database\Factories\RoomFactory;
+use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Room extends Model
+class StaffImage extends Model
 {
-    /** @use HasFactory<RoomFactory> */
+    /** @use HasFactory<RoleFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
     /**
@@ -21,9 +20,8 @@ class Room extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'address',
-        'explanation',
+        'staff_id',
+        'image_path',
     ];
 
     /**
@@ -40,18 +38,8 @@ class Room extends Model
      */
     protected $casts = [];
 
-    public function roomImage(): HasMany
+    public function staff(): BelongsTo
     {
-        return $this->hasMany(RoomImage::class);
-    }
-
-    public function roomPrice(): HasMany
-    {
-        return $this->hasMany(RoomPrice::class);
-    }
-
-    public function reservation(): BelongsTo
-    {
-        return $this->belongsTo(Reservation::class);
+        return $this->belongsTo(staff::class);
     }
 }

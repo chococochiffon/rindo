@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            //$table->foreignId('shop_id')->constrained('shops');
+            $table->string('name')->nullable();
+            $table->string('nickname')->nullable();
+            $table->string('x_id')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->integer('race')->default(0);
+            $table->integer('sex')->default(0);
+            $table->text('self_introduction')->nullable();
+            $table->string('x_url')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

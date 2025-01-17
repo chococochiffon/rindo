@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Database\Factories\RoomFactory;
+use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Room extends Model
+class Reservation extends Model
 {
-    /** @use HasFactory<RoomFactory> */
+    /** @use HasFactory<RoleFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
     /**
@@ -21,9 +21,18 @@ class Room extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'address',
-        'explanation',
+        'is_reservation',
+        'nickname',
+        'email',
+        'first_name',
+        'family_name',
+        'x_id',
+        'visit',
+        'visiting_time',
+        'staying_time',
+        'room_id',
+        'is_option_item',
+        'remarks',
     ];
 
     /**
@@ -40,18 +49,13 @@ class Room extends Model
      */
     protected $casts = [];
 
-    public function roomImage(): HasMany
+    public function room(): HasOne
     {
-        return $this->hasMany(RoomImage::class);
+        return $this->hasOne(Room::class);
     }
 
-    public function roomPrice(): HasMany
+    public function staff(): BelongsToMany
     {
-        return $this->hasMany(RoomPrice::class);
-    }
-
-    public function reservation(): BelongsTo
-    {
-        return $this->belongsTo(Reservation::class);
+        return $this->belongsToMany(Staff::class, 'staff_reservations');
     }
 }
